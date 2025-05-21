@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SRI RAGHAVENDRA AUTOMOBILES</title>
+  </head>
+  <body style="background-color: gray">
+    <header>
+      <nav>
+        <ul>
+          <li class="nav-li" id="home" onclick="home()">Home</li>
+          <li class="nav-li" id="sales" onclick="sales()">Sales</li>
+          <li class="nav-li" id="attendence" onclick="attendence()">
+            Attendence
+          </li>
+          <li class="nav-li" id="stock" onclick="stock()">Stock</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <form
+        method="post"
+        action="https://script.google.com/macros/s/AKfycbz0CPdJNGeCoIozW3vRMTIVO7O1m-6KyuQwocha89Jb4Py2orVKUs48Xk66tq07vbEE_Q/exec"
+        
+        id="bill-form"
+      >
+        <table>
+          <tr>
+            <td><label for="name">CUSTOMER NAME:</label></td>
+            <td>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="CUSTOMER NAME"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="number">MOBILE NUMBER:</label></td>
+            <td>
+              <input
+                type="number"
+                name="number"
+                id="number"
+                placeholder="NUMBER"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="product-dropdown">PRODUCT ID:</label></td>
+            <td>
+              <select id="product-dropdown" name="productId" required></select>
+            </td>
+          </tr>
+          <tr>
+            <td><label>Product Name:</label></td>
+            <td>
+              <input
+                type="text"
+                id="product-name"
+                name="productName"
+                readonly
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><label>MRP:</label></td>
+            <td>
+              <input type="text" id="product-mrp" name="mrp" readonly />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="quantity">QUANTITY:</label></td>
+            <td>
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                value="1"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="price">SELL PRICE:</label></td>
+            <td>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                placeholder="SELL PRICE"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <tr>
+              <td>
+                <label for="payment">PAYMENT:</label>
+              </td>
+              <td><select name="payment" id="payment">
+                <option value="online">ONLINE</option>
+                <option value="cash">CASH</option>
+              </select></td>
+            </tr>
+            <td><label for="total-amount">TOTAL AMOUNT:</label></td>
+            <td>
+              <input
+                type="text"
+                id="total-amount"
+                name="totalAmount"
+                placeholder="TOTAL AMOUNT"
+                readonly
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><input type="submit" id="billing-form"  value="submit"/></td>
+            <td>
+              <button type="button" id="generate-bill">Generate Bill</button>
+            </td>
+           
+          </tr>
+        </table>
+      </form>
+    </main>
+    <script src="index.js"></script>
+    <script src="product.js"></script>
+  </body>
+</html>

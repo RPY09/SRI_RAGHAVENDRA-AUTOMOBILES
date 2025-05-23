@@ -18,6 +18,61 @@
         </ul>
       </nav>
     </header>
+    <form
+      method="post"
+      action="ttps://script.google.com/macros/s/AKfycbz0CPdJNGeCoIozW3vRMTIVO7O1m-6KyuQwocha89Jb4Py2orVKUs48Xk66tq07vbEE_Q/exec"
+      id="stock-form"
+    >
+      <input type="hidden" name="type" id="" value="stock" />
+      <table>
+        <tr>
+          <td><label for="product-id">PRODUCT ID:</label></td>
+          <td>
+            <input type="text" name="pd_id" id="pd_id" required />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="pd-name">PRODUCT NAME:</label></td>
+          <td><input type="text" name="pd_name" id="pd_name" required /></td>
+        </tr>
+        <tr>
+          <td><label for="purchase">PURCHASE PRICE:</label></td>
+          <td>
+            <input type="number" name="purchase" id="purchase" required />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="p-mrp">PRODUCT M.R.P:</label></td>
+          <td><input type="number" name="pd_mrp" id="pd_mrp" required /></td>
+        </tr>
+        <tr>
+          <td><label for="stock">STOCK NO.:</label></td>
+          <td>
+            <input type="number" name="stock" id="pd_no" value="1" required />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              type="submit"
+              name="submit"
+              id="s-submit"
+              value="ENTER STOCK"
+            />
+          </td>
+          <td>
+            <input
+              type="button"
+              name="type"
+              id="views"
+              onclick="viewstock()"
+              value="viewStock"
+            />
+          </td>
+        </tr>
+      </table>
+    </form>
     <script src="index.js"></script>
+    <script src="stock.js"></script>
   </body>
 </html>

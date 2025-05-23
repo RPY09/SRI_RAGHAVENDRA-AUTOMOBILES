@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("script loaded ");
   const API_URL =
-    "https://script.google.com/macros/s/AKfycbz0CPdJNGeCoIozW3vRMTIVO7O1m-6KyuQwocha89Jb4Py2orVKUs48Xk66tq07vbEE_Q/exec?type=viewStock";
-  const scriptURL =
-    "https://script.google.com/macros/s/AKfycbz0CPdJNGeCoIozW3vRMTIVO7O1m-6KyuQwocha89Jb4Py2orVKUs48Xk66tq07vbEE_Q/exec";
+    "https://script.google.com/macros/s/AKfycbwayZdkSvZGGx-BUuAmf2XHJHxZAEkqynLGOeOEZKN1jMCS4IrOKtLHgWH6mdAHJZYAIg/exec";
+
   console.log("fetching the data");
-  fetch(API_URL)
+  fetch(`${API_URL}?type=getStock`)
     .then((res) => res.json())
     .then((data) => {
+      console.log("Fetched data:", data);
       // Create table
       const table = document.createElement("table");
       table.border = "1";
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Stock No",
         "Stock Sold",
         "Current Stock",
-        "Actions",
+        "Action",
       ];
       columns.forEach((col) => {
         const th = document.createElement("th");
@@ -31,7 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
         header.appendChild(th);
       });
 
-      // Add data rows
+      // Track changed rows
+      const changedRows = new Set();
+
       data.forEach((item) => {
         const row = table.insertRow();
         row.insertCell().textContent = item.id || "";
@@ -53,73 +55,143 @@ document.addEventListener("DOMContentLoaded", function () {
         row.insertCell().textContent = item.sold || ""; // Not editable
         row.insertCell().textContent = item.current || ""; // Not editable
 
-        // Actions cell
-        const actionsCell = row.insertCell();
+        // Mark row as changed on edit
+        [purchaseCell, mrpCell, noCell].forEach((cell) => {
+          cell.addEventListener("input", () => {
+            changedRows.add(row);
+            row.style.background = "#fff8dc"; // highlight changed row
+          });
+        });
 
-        // Update button
+        // Add Update button
+        const updateCell = row.insertCell();
         const updateBtn = document.createElement("button");
         updateBtn.textContent = "Update";
-        updateBtn.name = "type";
-        updateBtn.value = "update";
         updateBtn.onclick = function () {
-          // Read edited values from the table
-          const newPurchase = purchaseCell.textContent;
-          const newMrp = mrpCell.textContent;
-          const newNo = noCell.textContent;
-          const newName = row.cells[1].textContent;
+          const updatedPurchase = purchaseCell.textContent.trim();
+          const updatedMrp = mrpCell.textContent.trim();
+          const updatedNo = noCell.textContent.trim();
+          const id = row.cells[0].textContent.trim();
 
-          fetch(scriptURL, {
+          fetch(API_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              type: "update",
-              id: item.id,
-              name: newName,
-              purchase: newPurchase,
-              mrp: newMrp,
-              no: newNo,
-              sold: item.sold,
-              current: item.current,
+              formType: "updateStock",
+              id: id,
+              purchase: updatedPurchase,
+              mrp: updatedMrp,
+              no: updatedNo,
             }),
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
           })
             .then((res) => res.json())
-            .then((res) => {
-              if (res.success) {
-                alert("Updated successfully!");
-              } else {
-                alert("Update failed: " + res.error);
-              }
+            .then((result) => {
+              alert(result.message || "Stock updated!");
+              row.style.background = ""; // remove highlight
+              changedRows.delete(row);
+            })
+            .catch((err) => {
+              alert("Update failed!");
+              console.error("Update failed!", err);
             });
         };
-        actionsCell.appendChild(updateBtn);
+        updateCell.appendChild(updateBtn);
 
-        // Delete button
+        // Add Delete button
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
         deleteBtn.style.marginLeft = "8px";
         deleteBtn.onclick = function () {
-          if (confirm("Are you sure you want to delete ID: " + item.id + "?")) {
-            fetch(scriptURL, {
+          const id = row.cells[0].textContent.trim();
+          if (confirm("Are you sure you want to delete this row?")) {
+            fetch(API_URL, {
               method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ type: "delete", id: item.id }),
+              body: JSON.stringify({
+                formType: "deleteStock",
+                id: id,
+              }),
+              headers: {
+                "Content-Type": "text/plain;charset=utf-8",
+              },
             })
               .then((res) => res.json())
-              .then((res) => {
-                if (res.success) {
-                  alert("Deleted successfully!");
-                  table.deleteRow(row.rowIndex);
-                } else {
-                  alert("Delete failed: " + res.error);
+              .then((result) => {
+                alert(result.message || "Stock deleted!");
+                if (!result.error) {
+                  row.remove(); // Remove the row from the table on success
+                  changedRows.delete(row);
                 }
+              })
+              .catch((err) => {
+                alert("Delete failed!");
+                console.error("Delete failed!", err);
               });
           }
         };
-        actionsCell.appendChild(deleteBtn);
+        updateCell.appendChild(deleteBtn);
       });
 
       // Add table to the page
       document.body.appendChild(table);
+
+      // Add "Save All" button at the end of the table
+      const saveAllBtn = document.createElement("button");
+      saveAllBtn.textContent = "Save All Changes";
+      saveAllBtn.style.marginTop = "16px";
+      saveAllBtn.onclick = function () {
+        if (changedRows.size === 0) {
+          alert("No changes to save.");
+          return;
+        }
+        let pending = changedRows.size;
+        let errors = 0;
+        changedRows.forEach((row) => {
+          const id = row.cells[0].textContent.trim();
+          const updatedPurchase = row.cells[2].textContent.trim();
+          const updatedMrp = row.cells[3].textContent.trim();
+          const updatedNo = row.cells[4].textContent.trim();
+
+          fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify({
+              formType: "updateStock",
+              id: id,
+              purchase: updatedPurchase,
+              mrp: updatedMrp,
+              no: updatedNo,
+            }),
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              if (result.error) errors++;
+              row.style.background = ""; // remove highlight
+              changedRows.delete(row);
+              if (--pending === 0) {
+                alert(
+                  errors === 0
+                    ? "All changes saved!"
+                    : `${errors} row(s) failed to update.`
+                );
+              }
+            })
+            .catch(() => {
+              errors++;
+              if (--pending === 0) {
+                alert(
+                  errors === 0
+                    ? "All changes saved!"
+                    : `${errors} row(s) failed to update.`
+                );
+              }
+            });
+        });
+      };
+      document.body.appendChild(saveAllBtn);
     })
     .catch((err) => {
       console.error("Error loading products:", err);

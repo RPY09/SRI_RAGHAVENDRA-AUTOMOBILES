@@ -1,5 +1,5 @@
-const scriptURL =
-  "https://script.google.com/macros/s/AKfycbz0CPdJNGeCoIozW3vRMTIVO7O1m-6KyuQwocha89Jb4Py2orVKUs48Xk66tq07vbEE_Q/exec";
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbwayZdkSvZGGx-BUuAmf2XHJHxZAEkqynLGOeOEZKN1jMCS4IrOKtLHgWH6mdAHJZYAIg/exec";
 
 document.getElementById("stock-form").addEventListener("submit", function (e) {
   e.preventDefault(); // Prevent default form submit
@@ -7,23 +7,26 @@ document.getElementById("stock-form").addEventListener("submit", function (e) {
   const form = e.target;
   const formData = new FormData(form);
 
-  fetch(scriptURL, {
+  const data = {};
+  formData.forEach((value, key) => {
+    data[key] = value;
+  });
+
+  fetch(API_URL, {
     method: "POST",
-    body: formData,
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8",
+    },
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log("Success:", data);
-      alert("stock submitted successfully!");
-      document.getElementById("pd_id").value = " ";
-      document.getElementById("pd_name").value = " ";
-      document.getElementById("purchase").value = " ";
-      document.getElementById("pd_mrp").value = " ";
-      document.getElementById("pd_no").value = " ";
+    .then((result) => {
+      alert(result.message || "Stock enter successfully!");
+      form.reset();
     })
     .catch((err) => {
-      console.error("Error:", err);
-      alert("Error submitting bill");
+      alert("Stock failed to enter!");
+      console.error(err);
     });
 });
 function viewstock() {

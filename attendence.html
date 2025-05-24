@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SRI RAGHAVENDRA AUTOMOBILES</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="attend.css" />
   </head>
   <body>
     <header>
@@ -17,30 +25,32 @@
           <li class="nav-li" id="stock" onclick="stock()">Stock</li>
         </ul>
       </nav>
+      <h2>Daily Attendance</h2>
     </header>
-    <h2>Daily Attendance</h2>
 
-    <label>Name: <input type="text" id="name" value="Shiva" readonly /> </label
-    ><br /><br />
-
-    <label
-      >Status:
-      <select id="status">
-        <option value="Present">Present</option>
-        <option value="Absent">Absent</option>
-      </select> </label
-    ><br /><br />
-
-    <label
-      >Advance (₹): <input type="number" id="advance" placeholder="0" /> </label
-    ><br /><br />
-
-    <button id="submit-attendance-btn" onclick="submitAttendance()">
-      Submit
-    </button>
-    <button onclick="showSalary()">Show Salary</button>
-
-    <p id="response"></p>
+    <form
+      class="attendance-form"
+      onsubmit="event.preventDefault(); submitAttendance();"
+    >
+      <label>
+        Name:
+        <input type="text" id="name" value="Shiva" readonly />
+      </label>
+      <label>
+        Status:
+        <select id="status">
+          <option value="Present">Present</option>
+          <option value="Absent">Absent</option>
+        </select>
+      </label>
+      <label>
+        Advance (₹):
+        <input type="number" id="advance" placeholder="0" />
+      </label>
+      <button id="submit-attendance-btn" type="submit">Submit</button>
+      <button type="button" onclick="showSalary()">Show Salary</button>
+      <p id="response"></p>
+    </form>
     <script src="index.js"></script>
     <script src="attend.js"></script>
   </body>

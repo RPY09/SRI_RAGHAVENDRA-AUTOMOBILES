@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SRI RAGHAVENDRA AUTOMOBILES</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="stock.css" />
   </head>
   <body>
     <header>
@@ -17,6 +25,7 @@
           <li class="nav-li" id="stock" onclick="stock()">Stock</li>
         </ul>
       </nav>
+      <div id="header-svg"></div>
     </header>
     <form id="stock-form">
       <input type="hidden" name="formType" id="" value="sendStocks" />
@@ -48,33 +57,63 @@
           </td>
         </tr>
         <tr>
-          <td>
+          <td id="sbtn">
             <input
               type="submit"
               name="submit"
               id="s-submit"
-              value="ENTER STOCK"
+              value="ENTER"
             />
           </td>
-          <td>
+          <td id="bbtn">
             <input
               type="button"
               name="type"
               id="views"
               onclick="viewstock()"
-              value="viewStock"
+              value="VIEW STOCK"
             />
           </td>
         </tr>
       </table>
     </form>
-    <div id="expense-card" class="card" style="margin-bottom: 16px">
+    <!-- <div id="expense-card" class="card" style="margin-bottom: 16px">
       <h2>Monthly Expense</h2>
       <button id="update-expense-btn" style="display: none">
         Update Expense
-      </button>
+      </button> -->
     </div>
     <script src="index.js"></script>
     <script src="stock.js"></script>
+    <footer class="main-footer">
+      <div class="footer-content">
+        <span>&copy; 2025 SRI RAGHAVENDRA AUTOMOBILES</span>
+        <span>DISTUBUTOR OF <b>TATA GREEN BATTERIES</b></span>
+        <div class="footer-icons">
+          <a href="https://www.netflix.com/" target="_blank" title="Netflix">
+            <img
+              src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/netflix.svg"
+              alt="Netflix"
+            />
+          </a>
+          <a href="https://www.hotstar.com/" target="_blank" title="Hotstar">
+            <img
+              src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hotstar.svg"
+              alt="Hotstar"
+            />
+          </a>
+          <a
+            href="https://www.primevideo.com/"
+            target="_blank"
+            title="Prime Video"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonprime.svg"
+              alt="Prime Video"
+            />
+          </a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

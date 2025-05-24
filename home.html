@@ -4,17 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SRI RAGHAVENDRA AUTOMOBILES</title>
-    <style>
-      #low-stock {
-        max-height: 120px; /* Adjust height as needed for 5 items */
-        overflow-y: auto;
-        margin-top: 10px;
-        padding-left: 20px;
-      }
-      #low-stock li {
-        margin-bottom: 4px;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
@@ -28,27 +24,56 @@
           <li class="nav-li" id="stock" onclick="stock()">Stock</li>
         </ul>
       </nav>
+      <div id="header-svg"></div>
     </header>
     <div class="home_container">
       <div id="attendance-card" class="card">
-        <h2>Attendance Summary</h2>
+        <h2>Attendance</h2>
         <p id="present-days">Present Days: ...</p>
         <p id="advance-taken">Advance Taken: ...</p>
-        <button id="update-attendance-btn" style="display: none">
-          Update Attendance
-        </button>
+        <button id="update-attendance-btn">UPDATE</button>
       </div>
       <div id="stock-card" class="card">
-        <h2>Inventory Summary</h2>
+        <h2>Inventory</h2>
         <p id="total-stock">Total Stock: ...</p>
       </div>
       <div id="showroom-stats-card" class="card">
-        <h2>Showroom Battery Stats</h2>
-        <p id="most-buy-showroom">Showroom with Most Purchases: ...</p>
-        <p id="most-old-showroom">Showroom Sent Most Old Batteries: ...</p>
+        <h2>Showroom Battery</h2>
+        <p id="most-buy-showroom">Most Purchases: ...</p>
+        <p id="most-old-showroom">Old Batteries: ...</p>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="index.js"></script>
+    <footer class="main-footer">
+      <div class="footer-content">
+        <span>&copy; 2025 SRI RAGHAVENDRA AUTOMOBILES</span>
+        <span>DISTUBUTOR OF <b>TATA GREEN BATTERIES</b></span>
+        <div class="footer-icons">
+          <a href="https://www.netflix.com/" target="_blank" title="Netflix">
+            <img
+              src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/netflix.svg"
+              alt="Netflix"
+            />
+          </a>
+          <a href="https://www.hotstar.com/" target="_blank" title="Hotstar">
+            <img
+              src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hotstar.svg"
+              alt="Hotstar"
+            />
+          </a>
+          <a
+            href="https://www.primevideo.com/"
+            target="_blank"
+            title="Prime Video"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonprime.svg"
+              alt="Prime Video"
+            />
+          </a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

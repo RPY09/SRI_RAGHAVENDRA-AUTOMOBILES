@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Fetched data:", data);
       // Create table
       const table = document.createElement("table");
+      table.classList.add("stock-table");
+
       table.border = "1";
       table.style.width = "100%";
 
@@ -67,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const updateCell = row.insertCell();
         const updateBtn = document.createElement("button");
         updateBtn.textContent = "Update";
+        updateBtn.classList.add("stock-btn", "update-btn");
         updateBtn.onclick = function () {
           updateBtn.disabled = true; // Disable button
           const updatedPurchase = purchaseCell.textContent.trim();
@@ -106,7 +109,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Add Delete button
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
-        deleteBtn.style.marginLeft = "8px";
+        deleteBtn.classList.add("stock-btn", "delete-btn");
+
         deleteBtn.onclick = function () {
           deleteBtn.disabled = true; // Disable button
           const id = row.cells[0].textContent.trim();
@@ -149,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Add "Save All" button at the end of the table
       const saveAllBtn = document.createElement("button");
       saveAllBtn.textContent = "Save All Changes";
+      saveAllBtn.classList.add("stock-btn", "save-all-btn");
       saveAllBtn.style.marginTop = "16px";
       saveAllBtn.onclick = function () {
         if (changedRows.size === 0) {

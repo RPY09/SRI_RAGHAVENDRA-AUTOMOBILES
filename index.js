@@ -1,5 +1,5 @@
 function home() {
-  window.location.href = "index.html";
+  window.location.href = "home.html";
 }
 function sales() {
   window.location.href = "sales.html";
@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const advanceTakenElem = document.getElementById("advance-taken");
       const updateBtn = document.getElementById("update-attendance-btn");
       if (presentDaysElem) {
-        presentDaysElem.innerText = `Present Days: ${data.presentDays}`;
+        presentDaysElem.innerHTML = `Present Days: <span class="p-number">${data.presentDays}</span>`;
       }
       if (advanceTakenElem) {
-        advanceTakenElem.innerText = `Advance Taken: ₹${data.totalAdvance}`;
+        advanceTakenElem.innerHTML = `Advance Taken: <span class="stock-number">${data.totalAdvance}</span>`;
       }
       if (updateBtn) {
         updateBtn.style.display = data.todayMarked ? "none" : "inline-block";
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((data) => {
       const stockElem = document.getElementById("total-stock");
       if (stockElem) {
-        stockElem.innerText = `Total Stock: ${data.totalStock}`;
+        stockElem.innerHTML = `Total Stock: <span class="stock-number">${data.totalStock}</span>`;
         // Show low stock products as a list
         let lowStockElem = document.getElementById("low-stock");
         if (data.lowStock && data.lowStock.length > 0) {
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Add each low stock product as a list item
           data.lowStock.forEach(function (id) {
             const li = document.createElement("li");
-            li.innerText = `Product ID: ${id}`;
+            li.innerText = ` ${id}`;
             lowStockElem.appendChild(li);
           });
         } else if (lowStockElem) {
@@ -90,9 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const mostBuyElem = document.getElementById("most-buy-showroom");
       const mostOldElem = document.getElementById("most-old-showroom");
       if (mostBuyElem)
-        mostBuyElem.innerText = `Showroom with Most Purchases: ${data.mostBuy}`;
+        mostBuyElem.innerText = ` Most Purchases: ${data.mostBuy}`;
       if (mostOldElem)
-        mostOldElem.innerText = `Showroom Sent Most Old Batteries: ${data.mostOld}`;
+        mostOldElem.innerText = `Most Old Batteries: ${data.mostOld}`;
     });
 
   // Expense card logic

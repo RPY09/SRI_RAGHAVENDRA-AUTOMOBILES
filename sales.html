@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SRI RAGHAVENDRA AUTOMOBILES</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="sales.css" />
   </head>
   <body>
     <header>
@@ -18,12 +26,7 @@
           <li class="nav-li" id="stock" onclick="stock()">Stock</li>
         </ul>
       </nav>
-    </header>
-    <main>
-      <h1 class="header">Sales Entry</h1>
-
-      <!-- Place the dropdown here, outside all forms -->
-      <div class="form-group" style="margin-bottom: 20px">
+      <div class="sale-types">
         <label for="sale-type"><strong>Sale Type:</strong></label>
         <select id="sale-type" class="rounded-lg">
           <option value="customer" selected>Customer</option>
@@ -31,6 +34,10 @@
           <option value="showroom">Showroom</option>
         </select>
       </div>
+    </header>
+
+    <main>
+      <!-- Place the dropdown here, outside all forms -->
 
       <!-- Customer Form -->
       <div id="customer-form-div">
@@ -43,7 +50,6 @@
               type="text"
               name="customerName"
               id="name"
-              placeholder="CUSTOMER NAME"
               required
               class="rounded-lg"
             />
@@ -55,7 +61,6 @@
               type="number"
               name="mobileNumber"
               id="number"
-              placeholder="NUMBER"
               required
               class="rounded-lg"
             />
@@ -112,7 +117,6 @@
               type="number"
               id="price"
               name="price"
-              placeholder="SELL PRICE"
               required
               min="0"
               step="0.01"
@@ -148,14 +152,14 @@
               value="bill"
               class="btn btn-bill"
             >
-              Generate Bill
+              Bill
             </button>
           </div>
         </form>
       </div>
 
       <!-- Charging Form -->
-      <div id="charging-form-div" style="display: none">
+      <div id="c" style="display: none">
         <form id="charging-bill-form">
           <div class="form-group">
             <label for="charging-customer">CUSTOMER NAME:</label>
@@ -215,7 +219,7 @@
               value="bill"
               class="btn btn-bill"
             >
-              Generate Bill
+              Bill
             </button>
           </div>
         </form>
@@ -284,7 +288,7 @@
             />
           </div>
           <!-- Old/New radio buttons -->
-          <div class="form-group">
+          <div class="form-group" id="radioform">
             <label
               ><input type="radio" name="showroomType" value="old" checked />
               Old</label
@@ -301,7 +305,7 @@
               value="bill"
               class="btn btn-bill"
             >
-              Generate Bill
+              Bill
             </button>
           </div>
         </form>

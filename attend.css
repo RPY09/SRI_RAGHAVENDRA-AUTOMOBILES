@@ -135,3 +135,67 @@ h2 {
     padding: 18px 4vw;
   }
 }
+/* Base styles mostly good; just a few tweaks */
+
+.attendance-form {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(39, 48, 54, 0.14);
+  max-width: 400px;
+  margin: 1px auto 0 auto;
+  padding: 32px 28px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  height: 550px; /* consider making this flexible */
+  gap: 22px;
+  animation: formPop 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* Make height adaptive on smaller screens */
+@media (max-width: 600px) {
+  .attendance-form {
+    height: auto; /* avoid fixed height to allow content flow */
+  }
+}
+
+/* Smaller screens adjustments */
+@media (max-width: 500px) {
+  .attendance-form {
+    max-width: 98vw;
+    padding: 18px 4vw;
+    gap: 16px;
+  }
+  .attendance-form label {
+    font-size: 1rem;
+  }
+  .attendance-form input[type="text"],
+  .attendance-form input[type="number"],
+  .attendance-form select {
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+  .attendance-form button {
+    font-size: 1rem;
+    padding: 10px 24px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .attendance-form {
+    padding: 12px 3vw;
+  }
+  .attendance-form label {
+    font-size: 0.9rem;
+  }
+  .attendance-form input[type="text"],
+  .attendance-form input[type="number"],
+  .attendance-form select {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+  .attendance-form button {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+  }
+}

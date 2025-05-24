@@ -242,3 +242,122 @@ nav li:hover::after {
   filter: none;
   transform: scale(1.15);
 }
+/* Medium screens (tablets) */
+@media (max-width: 991px) {
+  nav ul {
+    gap: 60px;
+    padding-right: 30px;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-icons {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  #update-attendance-btn {
+    font-size: 0.95rem;
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    padding-right: 20px;
+  }
+
+  nav li {
+    font-size: 1rem;
+  }
+
+  .home_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 95%;
+    padding: 16px;
+    height: auto;
+  }
+
+  .card h2 {
+    font-size: 1.3rem;
+  }
+
+  #attendance-card p,
+  #stock-card #total-stock,
+  #showroom-stats-card p {
+    font-size: 1.1rem;
+  }
+
+  #update-attendance-btn {
+    font-size: 0.9rem;
+    padding: 6px 24px;
+  }
+
+  .footer-content {
+    padding: 0 16px;
+  }
+
+  .footer-icons a img {
+    width: 24px;
+    height: 24px;
+  }
+}
+/* Burger icon */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 12px;
+  gap: 6px;
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  z-index: 1001;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: #273036;
+  transition: all 0.3s ease;
+}
+
+/* Hide nav on small screens */
+@media (max-width: 600px) {
+  .burger {
+    display: flex;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: #0000004d;
+    position: absolute;
+    top: 56px;
+    right: 0;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px 0;
+    z-index: 1000;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+}

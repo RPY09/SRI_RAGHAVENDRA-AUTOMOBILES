@@ -11,11 +11,17 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="expenes.css" />
   </head>
   <body>
     <header>
+      <div class="burger" onclick="toggleNav()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <nav>
-        <ul>
+        <ul id="nav-links">
           <li class="nav-li" id="home" onclick="home()">Home</li>
           <li class="nav-li" id="sales" onclick="sales()">Sales</li>
           <li class="nav-li" id="attendence" onclick="attendence()">

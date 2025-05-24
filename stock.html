@@ -15,8 +15,13 @@
   </head>
   <body>
     <header>
+      <div class="burger" onclick="toggleNav()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <nav>
-        <ul>
+        <ul id="nav-links">
           <li class="nav-li" id="home" onclick="home()">Home</li>
           <li class="nav-li" id="sales" onclick="sales()">Sales</li>
           <li class="nav-li" id="attendence" onclick="attendence()">
@@ -75,6 +80,13 @@
             />
           </td>
         </tr>
+        <a href="expenes.html"><input
+              type="button"
+              name="type"
+              id="views"
+              onclick=""
+              value="EXPENSES"
+            /></a>
       </table>
     </form>
     <!-- <div id="expense-card" class="card" style="margin-bottom: 16px">

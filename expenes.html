@@ -18,30 +18,22 @@
         </ul>
       </nav>
     </header>
-    <h2>Daily Attendance</h2>
 
-    <label>Name: <input type="text" id="name" value="Shiva" readonly /> </label
-    ><br /><br />
-
-    <label
-      >Status:
-      <select id="status">
-        <option value="Present">Present</option>
-        <option value="Absent">Absent</option>
-      </select> </label
-    ><br /><br />
-
-    <label
-      >Advance (₹): <input type="number" id="advance" placeholder="0" /> </label
-    ><br /><br />
-
-    <button id="submit-attendance-btn" onclick="submitAttendance()">
-      Submit
-    </button>
-    <button onclick="showSalary()">Show Salary</button>
-
-    <p id="response"></p>
+    <form id="expenditure-form">
+      
+      <input type="number" name="rent" placeholder="Rent" required />
+      <input
+        type="number"
+        name="electricity"
+        placeholder="Electricity"
+        required
+      />
+      <input type="number" name="salary" placeholder="Salary" required />
+      <input type="number" name="other" placeholder="Other" required />
+      <button type="submit">Submit Monthly Expenditure</button>
+    </form>
+    <div id="exp-response"></div>
     <script src="index.js"></script>
-    <script src="attend.js"></script>
+    <script src="expenes.js"></script>
   </body>
 </html>

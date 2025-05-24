@@ -7,7 +7,6 @@
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
   </head>
   <body>
-    < class="container">
     <header>
       <nav>
         <ul class="nav-ul">
@@ -23,124 +22,324 @@
     <main>
       <h1 class="header">Sales Entry</h1>
 
-      <form id="bill-form">
-        <input type="hidden" name="formType" value="sales" />
+      <!-- Place the dropdown here, outside all forms -->
+      <div class="form-group" style="margin-bottom: 20px">
+        <label for="sale-type"><strong>Sale Type:</strong></label>
+        <select id="sale-type" class="rounded-lg">
+          <option value="customer" selected>Customer</option>
+          <option value="charging">Charging</option>
+          <option value="showroom">Showroom</option>
+        </select>
+      </div>
 
-        <div class="form-group">
-          <label for="name">CUSTOMER NAME:</label>
-          <input
-            type="text"
-            name="customerName"
-            id="name"
-            placeholder="CUSTOMER NAME"
-            required
-            class="rounded-lg"
-          />
-        </div>
+      <!-- Customer Form -->
+      <div id="customer-form-div">
+        <form id="bill-form">
+          <input type="hidden" name="formType" value="sales" />
 
-        <div class="form-group">
-          <label for="number">MOBILE NUMBER:</label>
-          <input
-            type="number"
-            name="mobileNumber"
-            id="number"
-            placeholder="NUMBER"
-            required
-            class="rounded-lg"
-          />
-        </div>
+          <div class="form-group">
+            <label for="name">CUSTOMER NAME:</label>
+            <input
+              type="text"
+              name="customerName"
+              id="name"
+              placeholder="CUSTOMER NAME"
+              required
+              class="rounded-lg"
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="product-dropdown">PRODUCT ID:</label>
-          <select
-            id="product-dropdown"
-            name="productId"
-            required
-            class="rounded-lg"
-          ></select>
-        </div>
+          <div class="form-group">
+            <label for="number">MOBILE NUMBER:</label>
+            <input
+              type="number"
+              name="mobileNumber"
+              id="number"
+              placeholder="NUMBER"
+              required
+              class="rounded-lg"
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="product-name">Product Name:</label>
-          <input
-            type="text"
-            id="product-name"
-            name="productName"
-            readonly
-            class="rounded-lg"
-          />
-        </div>
+          <div class="form-group">
+            <label for="product-dropdown">PRODUCT ID:</label>
+            <select
+              id="product-dropdown"
+              name="productId"
+              required
+              class="rounded-lg"
+            ></select>
+          </div>
 
-        <div class="form-group">
-          <label for="product-mrp">MRP:</label>
-          <input
-            type="number"
-            id="product-mrp"
-            name="mrp"
-            readonly
-            class="rounded-lg"
-          />
-        </div>
+          <div class="form-group">
+            <label for="product-name">Product Name:</label>
+            <input
+              type="text"
+              id="product-name"
+              name="productName"
+              readonly
+              class="rounded-lg"
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="quantity">QUANTITY:</label>
-          <input
-            type="number"
-            id="quantity"
-            name="quantity"
-            value="1"
-            min="0"
-            required
-            class="rounded-lg"
-          />
-        </div>
+          <div class="form-group">
+            <label for="product-mrp">MRP:</label>
+            <input
+              type="number"
+              id="product-mrp"
+              name="mrp"
+              readonly
+              class="rounded-lg"
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="price">SELL PRICE:</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            placeholder="SELL PRICE"
-            required
-            min="0"
-            step="0.01"
-            class="rounded-lg"
-          />
-        </div>
+          <div class="form-group">
+            <label for="quantity">QUANTITY:</label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              value="1"
+              min="0"
+              required
+              class="rounded-lg"
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="payment">PAYMENT METHOD:</label>
-          <select name="paymentMethod" id="payment" class="rounded-lg">
-            <option value="online">ONLINE</option>
-            <option value="cash">CASH</option>
-          </select>
-        </div>
+          <div class="form-group">
+            <label for="price">SELL PRICE:</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              placeholder="SELL PRICE"
+              required
+              min="0"
+              step="0.01"
+              class="rounded-lg"
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="total-amount">TOTAL AMOUNT:</label>
-          <input
-            type="number"
-            id="total-amount"
-            name="totalAmount"
-            placeholder="TOTAL AMOUNT"
-            readonly
-            class="rounded-lg"
-          />
-        </div>
+          <div class="form-group">
+            <label for="payment">PAYMENT METHOD:</label>
+            <select name="paymentMethod" id="payment" class="rounded-lg">
+              <option value="online">ONLINE</option>
+              <option value="cash">CASH</option>
+            </select>
+          </div>
 
-        <div class="btn-group">
-          <button type="submit" class="btn btn-submit">Submit</button>
-          <button type="submit" name="action" value="bill" class="btn btn-bill">
-            Generate Bill
-          </button>
-        </div>
-      </form>
+          <div class="form-group">
+            <label for="total-amount">TOTAL AMOUNT:</label>
+            <input
+              type="number"
+              id="total-amount"
+              name="totalAmount"
+              placeholder="TOTAL AMOUNT"
+              readonly
+              class="rounded-lg"
+            />
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn btn-submit">Submit</button>
+            <button
+              type="submit"
+              name="action"
+              value="bill"
+              class="btn btn-bill"
+            >
+              Generate Bill
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Charging Form -->
+      <div id="charging-form-div" style="display: none">
+        <form id="charging-bill-form">
+          <div class="form-group">
+            <label for="charging-customer">CUSTOMER NAME:</label>
+            <input
+              type="text"
+              id="charging-customer"
+              name="chargingCustomer"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="charging-number">MOBILE NUMBER:</label>
+            <input
+              type="number"
+              id="charging-number"
+              name="chargingNumber"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="vechile">VECHIILE TYPE:</label>
+            <input
+              type="text"
+              id="vechile"
+              name="vechile"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="charging-typer">BATTERY TYPE:</label>
+            <input
+              type="text"
+              id="charging-type"
+              name="chargingType"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="charging-amount">CHARGING AMOUNT:</label>
+            <input
+              type="number"
+              id="charging-amount"
+              name="chargingAmount"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <div class="btn-group">
+            <button type="submit" class="btn btn-submit">Submit</button>
+            <button
+              type="submit"
+              name="action"
+              value="bill"
+              class="btn btn-bill"
+            >
+              Generate Bill
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Showroom Form -->
+      <div id="showroom-form-div" style="display: none">
+        <form id="showroom-bill-form">
+          <div class="form-group">
+            <label for="showroom-customer">CUSTOMER NAME:</label>
+            <input
+              type="text"
+              id="showroom-customer"
+              name="showroomCustomer"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="showroom-name">SHOWROOM NAME:</label>
+            <input
+              type="text"
+              id="showroom-name"
+              name="showroomName"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="product-dropdown">PRODUCT ID:</label>
+            <select
+              id="showroom-product-dropdown"
+              name="showroomProductId"
+              required
+              class="rounded-lg"
+            ></select>
+          </div>
+          <div class="form-group">
+            <label for="showroom-battery-no">BATTERY NO.:</label>
+            <input
+              type="text"
+              id="showroom-battery-no"
+              name="showroomBatteryNo"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="showroom-number">MOBILE NUMBER:</label>
+            <input
+              type="number"
+              id="showroom-number"
+              name="showroomNumber"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="showroom-mrp">MRP:</label>
+            <input
+              type="number"
+              id="showroom-mrp"
+              name="showroomMrp"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <!-- Old/New radio buttons -->
+          <div class="form-group">
+            <label
+              ><input type="radio" name="showroomType" value="old" checked />
+              Old</label
+            >
+            <label
+              ><input type="radio" name="showroomType" value="new" /> New</label
+            >
+          </div>
+          <div class="btn-group">
+            <button type="submit" class="btn btn-submit">Submit</button>
+            <button
+              type="submit"
+              name="action"
+              value="bill"
+              class="btn btn-bill"
+            >
+              Generate Bill
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div
+        id="battery-match-result"
+        style="margin-top: 16px; color: #b91c1c"
+      ></div>
     </main>
 
     <script src="index.js"></script>
-    <!-- <script src="product.js"></script> -->
+
     <script src="newproduct.js"></script>
-    <!-- <script src="sentcustomer.js"></script> -->
+
+    <script>
+      // Show/hide form sections based on dropdown selection
+      document.addEventListener("DOMContentLoaded", function () {
+        const saleType = document.getElementById("sale-type");
+        const customerDiv = document.getElementById("customer-form-div");
+        const chargingDiv = document.getElementById("charging-form-div");
+        const showroomDiv = document.getElementById("showroom-form-div");
+
+        function updateFormVisibility() {
+          if (!saleType || !customerDiv || !chargingDiv || !showroomDiv) return;
+          customerDiv.style.display =
+            saleType.value === "customer" ? "block" : "none";
+          chargingDiv.style.display =
+            saleType.value === "charging" ? "block" : "none";
+          showroomDiv.style.display =
+            saleType.value === "showroom" ? "block" : "none";
+        }
+
+        if (saleType) {
+          saleType.addEventListener("change", updateFormVisibility);
+          updateFormVisibility(); // Set initial state
+        }
+      });
+    </script>
   </body>
 </html>

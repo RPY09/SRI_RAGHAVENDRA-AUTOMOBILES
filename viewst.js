@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const updateBtn = document.createElement("button");
         updateBtn.textContent = "Update";
         updateBtn.onclick = function () {
+          updateBtn.disabled = true; // Disable button
           const updatedPurchase = purchaseCell.textContent.trim();
           const updatedMrp = mrpCell.textContent.trim();
           const updatedNo = noCell.textContent.trim();
@@ -95,6 +96,9 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch((err) => {
               alert("Update failed!");
               console.error("Update failed!", err);
+            })
+            .finally(() => {
+              updateBtn.disabled = false; // Re-enable button
             });
         };
         updateCell.appendChild(updateBtn);
@@ -104,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
         deleteBtn.textContent = "Delete";
         deleteBtn.style.marginLeft = "8px";
         deleteBtn.onclick = function () {
+          deleteBtn.disabled = true; // Disable button
           const id = row.cells[0].textContent.trim();
           if (confirm("Are you sure you want to delete this row?")) {
             fetch(API_URL, {
@@ -127,7 +132,12 @@ document.addEventListener("DOMContentLoaded", function () {
               .catch((err) => {
                 alert("Delete failed!");
                 console.error("Delete failed!", err);
+              })
+              .finally(() => {
+                deleteBtn.disabled = false; // Re-enable button
               });
+          } else {
+            deleteBtn.disabled = false; // Re-enable if cancelled
           }
         };
         updateCell.appendChild(deleteBtn);
@@ -145,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
           alert("No changes to save.");
           return;
         }
+        saveAllBtn.disabled = true; // Disable button
         let pending = changedRows.size;
         let errors = 0;
         changedRows.forEach((row) => {
@@ -177,6 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ? "All changes saved!"
                     : `${errors} row(s) failed to update.`
                 );
+                saveAllBtn.disabled = false; // Re-enable button
               }
             })
             .catch(() => {
@@ -187,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ? "All changes saved!"
                     : `${errors} row(s) failed to update.`
                 );
+                saveAllBtn.disabled = false; // Re-enable button
               }
             });
         });

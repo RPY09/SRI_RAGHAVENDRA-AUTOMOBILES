@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SRI RAGHAVENDRA AUTOMOBILES</title>
+    <style>
+      #low-stock {
+        max-height: 120px; /* Adjust height as needed for 5 items */
+        overflow-y: auto;
+        margin-top: 10px;
+        padding-left: 20px;
+      }
+      #low-stock li {
+        margin-bottom: 4px;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -18,9 +29,26 @@
         </ul>
       </nav>
     </header>
-    <main>
-      <section></section>
-    </main>
+    <div class="home_container">
+      <div id="attendance-card" class="card">
+        <h2>Attendance Summary</h2>
+        <p id="present-days">Present Days: ...</p>
+        <p id="advance-taken">Advance Taken: ...</p>
+        <button id="update-attendance-btn" style="display: none">
+          Update Attendance
+        </button>
+      </div>
+      <div id="stock-card" class="card">
+        <h2>Inventory Summary</h2>
+        <p id="total-stock">Total Stock: ...</p>
+      </div>
+      <div id="showroom-stats-card" class="card">
+        <h2>Showroom Battery Stats</h2>
+        <p id="most-buy-showroom">Showroom with Most Purchases: ...</p>
+        <p id="most-old-showroom">Showroom Sent Most Old Batteries: ...</p>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

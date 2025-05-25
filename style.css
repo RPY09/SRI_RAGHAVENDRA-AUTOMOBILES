@@ -106,7 +106,7 @@ nav li:hover::after {
 #attendance-card p {
   margin-top: 30px;
   font-size: 1.4rem;
-  font-weight: 500;
+  font-weight: 300;
   text-align: left;
   font-family: fantasy;
 }
@@ -175,11 +175,11 @@ nav li:hover::after {
 
 .stock-number {
   color: #e53935; /* red */
-  font-weight: bold;
+  font-weight: 300;
 }
 .p-number {
   color: #11cb43a0; /* red */
-  font-weight: bold;
+  font-weight: 300;
 }
 
 #showroom-stats-card {

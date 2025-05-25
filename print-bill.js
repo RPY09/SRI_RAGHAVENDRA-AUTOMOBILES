@@ -86,6 +86,7 @@ function generateCustomerBill() {
     border: 1px solid #ccc;
     padding: 10px 12px;
     text-align: left;
+    text-transform: uppercase;
   }
 
   th {
@@ -169,7 +170,9 @@ function generateCustomerBill() {
     <body onload="window.print(); window.close();">
     
   <div class="header">
-    <h2>SRI RAGHAVENDRA AUTOMOBILES (${billType.toUpperCase()})</h2>
+    <h2>SRI RAGHAVENDRA AUTOMOBILES</h2>
+          <h5>[A TATA BATTERIES DISTUBUTOR]</h5>
+
     <p>
       H NO 2-1-10/1/C OLD POWER HOUSE, MAHABUBNAGAR-509001, TG<br>
       PH NO: 7396463587, GSTIN: 36AKJPR6671H2ZL, STATE: 36-TELANGANA
@@ -240,12 +243,12 @@ function generateShowroomBill() {
   const productId = document.getElementById("showroom-product-dropdown").value;
   const batteryNo = document.getElementById("showroom-battery-no").value;
   const mrp = document.getElementById("showroom-mrp").value;
-  const payment = document.getElementById("payment").value;
+  const payment = document.getElementById("showpayment").value;
   const type = document.querySelector(
     'input[name="showroomType"]:checked'
   ).value;
 
-  const billWindow = window.open("", "_blank");
+  const billWindow = window.open("", "", "width=800,height=600");
   billWindow.document.write(`
     <html>
       <head>
@@ -261,6 +264,7 @@ function generateShowroomBill() {
             background: #fff;
             color: #333;
             box-sizing: border-box;
+            text-transform: uppercase;
           }
 
           /* Table styling */
@@ -276,6 +280,7 @@ function generateShowroomBill() {
             border: 1px solid #ccc;
             padding: 8px 10px;
             text-align: left;
+            text-transform: uppercase;
           }
 
           th {
@@ -359,6 +364,7 @@ function generateShowroomBill() {
             th, td {
               font-size: 11px;
               padding: 6px;
+              text-transform: uppercase;
             }
           }
         </style>
@@ -367,6 +373,7 @@ function generateShowroomBill() {
       <body onload="window.print(); window.close();">
         <div class="header">
           <h2>SRI RAGHAVENDRA AUTOMOBILES</h2>
+          <h5>[A TATA BATTERIES DISTUBUTOR]</h5>
           <p>SHOWROOM BILL</p>
         </div>
         <p><strong>Customer:</strong> ${name}</p>
@@ -386,7 +393,7 @@ function generateShowroomBill() {
           <div>Authorized Signatory</div>
           <div>Receiver Signature</div>
         </div>
-        <script>window.print();</script>
+        
       </body>
     </html>
   `);

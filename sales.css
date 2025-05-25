@@ -114,7 +114,9 @@ form {
   transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
   margin-top: 8px;
   box-shadow: 0 1px 4px rgba(39, 48, 54, 0.04);
-  font-family: fantasy;
+  font-family: "Share Tech", sans-serif;
+  font-weight: 900;
+  letter-spacing: 1px;
 }
 
 .form-group input:focus,

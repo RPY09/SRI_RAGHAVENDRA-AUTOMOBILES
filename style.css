@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -73,7 +75,7 @@ nav li:hover::after {
   background: #ffffff77;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.422);
-  padding: 24px;
+  padding: 20px;
   width: 500px; /* Fixed width for all cards */
   min-width: 300px;
   max-width: 500px;
@@ -95,6 +97,7 @@ nav li:hover::after {
   font-family: "Oswald", Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 600;
   letter-spacing: 1px;
+  text-decoration: underline;
 }
 
 #attendance-card {
@@ -106,15 +109,16 @@ nav li:hover::after {
 #attendance-card p {
   margin-top: 30px;
   font-size: 1.4rem;
-  font-weight: 300;
+  font-weight: 700;
+  /* letter-spacing: 1px; */
   text-align: left;
-  font-family: fantasy;
+  font-family: "Share Tech", sans-serif;
 }
 
 #update-attendance-btn {
   display: block;
   margin: 24px auto 0 auto;
-  padding: 3px 32px; /* Reasonable vertical padding */
+  padding: 5px 32px; /* Reasonable vertical padding */
   font-size: 1rem;
   font-family: "Oswald", Verdana, Geneva, Tahoma, sans-serif;
   background: linear-gradient(to right, #273036 50%, #fff 50%);
@@ -139,9 +143,9 @@ nav li:hover::after {
 #stock-card #total-stock {
   text-align: left;
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: 700;
   margin-bottom: 16px;
-  font-family: fantasy;
+  font-family: "Share Tech", sans-serif;
 }
 
 #low-stock {
@@ -174,12 +178,12 @@ nav li:hover::after {
 }
 
 .stock-number {
-  color: #e53935; /* red */
-  font-weight: 300;
+  color: #ff0400; /* red */
+  font-weight: 900;
 }
 .p-number {
-  color: #11cb43a0; /* red */
-  font-weight: 300;
+  color: #01731fa0; /* red */
+  font-weight: 900;
 }
 
 #showroom-stats-card {
@@ -190,10 +194,11 @@ nav li:hover::after {
 
 #showroom-stats-card p {
   font-size: 1.15rem;
-  color: #444;
+  color: #000000;
+  font-weight: 700;
   margin-top: 30px;
   letter-spacing: 0.5px;
-  font-family: fantasy;
+  font-family: "Share Tech", sans-serif;
 }
 
 .main-footer {

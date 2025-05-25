@@ -33,7 +33,7 @@ nav ul {
   list-style: none;
   display: flex;
   justify-content: end;
-  gap: 100px;
+  gap: 50px;
   color: aliceblue;
   padding-right: 50px;
 }

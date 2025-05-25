@@ -16,6 +16,15 @@ function stock() {
     alert("Incorrect password!");
   }
 }
+function monthstats() {
+  const password = prompt("Enter password to access stock:");
+  if (password === "raju3672") {
+    // Replace with your actual password
+    window.location.href = "monthstats.html";
+  } else {
+    alert("Incorrect password!");
+  }
+}
 const scriptsURL =
   "https://script.google.com/macros/s/AKfycbwayZdkSvZGGx-BUuAmf2XHJHxZAEkqynLGOeOEZKN1jMCS4IrOKtLHgWH6mdAHJZYAIg/exec";
 

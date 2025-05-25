@@ -4,16 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SRI RAGHAVENDRA AUTOMOBILES</title>
-    <link rel="icon" href="rpycol bg.png" />
-
+    <link rel="icon" href="rpycol bg.png" sizes="64x64" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="moonthstats.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="expenes.css" />
   </head>
   <body>
     <header>
@@ -25,7 +24,7 @@
       <nav>
         <ul id="nav-links">
           <li class="nav-li" id="home" onclick="home()">Home</li>
-          <li class="nav-li" id="sales" onclick="sales()">Sales</li>
+          <li class="nav-li" id="sales" onclick="sales()">Bills</li>
           <li class="nav-li" id="attendence" onclick="attendence()">
             Attendence
           </li>
@@ -34,22 +33,32 @@
         </ul>
       </nav>
       <div id="header-svg"></div>
+      <h1>GET STATS</h1>
     </header>
-
-    <form id="expenditure-form">
-      <input type="number" name="rent" placeholder="Rent" required />
-      <input
-        type="number"
-        name="electricity"
-        placeholder="Electricity"
-        required
-      />
-      <input type="number" name="salary" placeholder="Salary" required />
-      <input type="number" name="other" placeholder="Other" required />
-      <button type="submit">Submit Monthly Expenditure</button>
+    <form action="" id="monthStatsForm">
+      <div class="moform">
+        <label for="date1">From</label>
+        <input type="date" id="date1" name="date1" class="dates" required />
+        <label for="date2">To</label>
+        <input type="date" name="date2" id="date2" class="dates" required />
+        <button type="submit">GET</button>
+      </div>
     </form>
-    <div id="exp-response"></div>
+
+    <!-- Print button, hidden until data is fetched -->
+    <div class="buts">
+      <button id="printButton" style="display: none">Print Report</button>
+      <button id="showTotalsBtn" style="display: none; margin-top: 10px">
+        Show Total Sales & Profits
+      </button>
+    </div>
+    <!-- Results -->
+    <div id="monthResults"></div>
+
+    <div id="totals"></div>
+    <div id="dailyResults"></div>
+
     <script src="index.js"></script>
-    <script src="expenes.js"></script>
+    <script src="monthstats.js"></script>
   </body>
 </html>

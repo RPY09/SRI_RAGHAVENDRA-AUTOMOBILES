@@ -16,9 +16,11 @@ function generateCustomerBill() {
   const productName = document.getElementById("product-name").value;
   const mrp = document.getElementById("product-mrp").value;
   const quantity = document.getElementById("quantity").value;
+  const sellprice = document.getElementById("price").value;
   const totalAmount = document.getElementById("total-amount").value;
   const paymentMethod = document.getElementById("payment").value;
   const billNo = Math.floor(1000 + Math.random() * 9000);
+  const discount = mrp - sellprice;
   const currentDate = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -210,7 +212,7 @@ function generateCustomerBill() {
           <td>${quantity}</td>
           <td>${productName}</td>
           <td>${mrp}</td>
-          <td>0</td>
+          <td>${discount}</td>
           <td>${totalAmount}</td>
         </tr>
       </tbody>

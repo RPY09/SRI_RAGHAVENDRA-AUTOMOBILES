@@ -102,6 +102,7 @@ form {
 
 .form-group input,
 .form-group select {
+  text-transform: uppercase;
   width: 100;
   padding: 14px 14px 14px 14px;
   border: 2px solid #d1d5db;
@@ -234,6 +235,12 @@ form {
     max-width: 100%;
   }
 }
+#chargebtn {
+  margin-left: 309px;
+}
+#raiolab {
+  font-size: 2rem;
+}
 
 /* Hide scrollbars for a cleaner look */
 form::-webkit-scrollbar {
@@ -244,8 +251,8 @@ form {
   scrollbar-width: none;
 }
 #showroom-bill-form {
-  height: 450px;
-  margin-top: 50px;
+  height: 549px;
+  margin-top: 20px;
 }
 #radioform {
   display: flex;
@@ -258,7 +265,7 @@ input[type="radio"] {
   accent-color: rgb(49, 57, 66);
 }
 #charging-bill-form {
-  height: 350px;
+  height: 443px;
   margin-top: 70px;
 }
 /* Base improvements */

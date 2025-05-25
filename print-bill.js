@@ -1,5 +1,15 @@
 function generateBill() {
   const billType = document.getElementById("sale-type").value;
+
+  if (billType === "showroom") {
+    generateShowroomBill();
+  } else {
+    generateCustomerBill();
+  }
+}
+
+function generateCustomerBill() {
+  const billType = document.getElementById("sale-type").value;
   const customerName = document.getElementById("name").value;
   const mobileNumber = document.getElementById("number").value;
   const productIdRaw = document.getElementById("product-dropdown").value;
@@ -21,6 +31,7 @@ function generateBill() {
     billType === "charging" ? `CH-${productIdRaw}` : productIdRaw;
 
   const newWindow = window.open("", "", "width=800,height=600");
+  console.log("customerName");
   newWindow.document.write(`
     <html>
     <head>
@@ -28,85 +39,71 @@ function generateBill() {
       <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
+    width: 210mm;
+    height: 148mm;
+    padding: 20px 30px;
+    margin: 0;
     background: #f9fafb;
     color: #333;
+    box-sizing: border-box;
   }
 
-  /* Container for table to hold watermark */
+  /* Watermarked table wrapper */
   .table-container {
     position: relative;
     width: 100%;
   }
 
-  /* Watermark styling */
   .table-container::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 300px;  /* Adjust size as needed */
-    height: 100px; /* Adjust size as needed */
-    background-image: url('tata-green-batteries-png.png');
+    width: 300px;
+    height: 100px;
+    background-image: url('tata-green-batteries-png.png'); /* Replace with actual path if needed */
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    opacity: 0.1;  /* Light transparency */
+    opacity: 0.06;
     transform: translate(-50%, -50%);
-    pointer-events: none; /* So it doesn't interfere with clicks */
+    pointer-events: none;
     z-index: 0;
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 13px;
     background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     position: relative;
-    z-index: 1; /* Put table content above watermark */
-    border-radius: 8px;
-    overflow: hidden;
+    z-index: 1;
+    margin-top: 10px;
   }
 
   th, td {
-    border: 1px solid #ddd;
-    padding: 12px 15px;
+    border: 1px solid #ccc;
+    padding: 10px 12px;
     text-align: left;
   }
 
   th {
     background-color: #4a90e2;
     color: #fff;
-    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 600;
+    letter-spacing: 0.03em;
   }
 
   td {
-    color: #555;
+    color: #444;
   }
 
-  .header, .footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-    margin-bottom: 40px;
-  }
-
-  .footer {
-    margin-top: 100px;
-    gap: 120px;
-    font-size: 13px;
-    color: #666;
-  }
-
+  /* Optional extra info rows without borders */
   .bill-info td {
     border: none;
-    padding: 6px 12px;
+    padding: 6px 10px;
     font-weight: 500;
   }
 
@@ -114,81 +111,284 @@ function generateBill() {
     background-color: #f0f5ff;
   }
 
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #222;
+  }
+
+  .header p {
+    font-size: 12px;
+    margin: 5px 0;
+    color: #666;
+  }
+
+  .footer {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #555;
+  }
+
   @media print {
     body {
       width: 210mm;
       height: 148mm;
-      padding: 0;
+      padding: 10mm;
       margin: 0;
       background: #fff;
       color: #000;
     }
+
     table {
       box-shadow: none;
-      margin-bottom: 0;
       font-size: 12px;
     }
+
     .header, .footer {
-      justify-content: space-between;
-      gap: 20px;
       margin-bottom: 10px;
+      gap: 20px;
+      justify-content: space-between;
     }
-    /* Hide watermark in print for clarity */
+
     .table-container::before {
-      content: none;
+      content: none; /* Hide watermark for clean print */
     }
   }
 </style>
 
+
     </head>
     <body onload="window.print(); window.close();">
-      <div class="header">
-        <h2>SRI RAGHAVENDRA AUTOMOBILES (${billType.toUpperCase()})</h2>
-        <p>H NO 2-1-10/1/C OLD POWER HOUSE, MAHABUBNAGAR-509001, TG<br>
-           PH NO: 7396463587, GSTIN: 36AKJPR6671H2ZL, STATE: 36-TELANGANA</p>
-      </div>
-      <table class="bill-info">
+    
+  <div class="header">
+    <h2>SRI RAGHAVENDRA AUTOMOBILES (${billType.toUpperCase()})</h2>
+    <p>
+      H NO 2-1-10/1/C OLD POWER HOUSE, MAHABUBNAGAR-509001, TG<br>
+      PH NO: 7396463587, GSTIN: 36AKJPR6671H2ZL, STATE: 36-TELANGANA
+    </p>
+  </div>
+
+  <div class="table-container">
+    <!-- Bill Info Table (No borders) -->
+    <table class="bill-info">
+      <tr>
+        <td><strong>Bill No:</strong> ${billNo}</td>
+        <td><strong>Date:</strong> ${currentDate}</td>
+      </tr>
+      <tr>
+        <td><strong>Billed To:</strong> ${customerName}</td>
+        <td><strong>Mobile:</strong> ${mobileNumber}</td>
+      </tr>
+    </table>
+
+    <!-- Product Table -->
+    <table>
+      <thead>
         <tr>
-          <td><strong>Bill No:</strong> ${billNo}</td>
-          <td><strong>Date:</strong> ${currentDate}</td>
+          <th>ID</th>
+          <th>Quantity</th>
+          <th>Name</th>
+          <th>MRP</th>
+          <th>Discount</th>
+          <th>Amount</th>
         </tr>
+      </thead>
+      <tbody>
         <tr>
-          <td><strong>Billed To:</strong> ${customerName}</td>
-          <td><strong>Mobile:</strong> ${mobileNumber}</td>
+          <td>${productId}</td>
+          <td>${quantity}</td>
+          <td>${productName}</td>
+          <td>${mrp}</td>
+          <td>0</td>
+          <td>${totalAmount}</td>
         </tr>
-      </table>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th><th>Quantity</th><th>Name</th><th>MRP</th><th>Discount</th><th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>${productId}</td>
-            <td>${quantity}</td>
-            <td>${productName}</td>
-            <td>${mrp}</td>
-            <td>0</td>
-            <td>${totalAmount}</td>
-          </tr>
-        </tbody>
-      </table>
-      <table>
-        <tr>
-          <td><strong>Payment:</strong> ${paymentMethod}</td>
-          <td><strong>Total:</strong> ${totalAmount}</td>
-        </tr>
-      </table>
-      <div class="footer">
-        <p>AUTHORIZED SIGNATORY & STAMP</p><br>
-        <br>
-        <br>
-        <br>
-        <p>RECEIVER SIGNATORY</p>
-      </div>
-    </body>
+      </tbody>
+    </table>
+
+    <!-- Payment Table -->
+    <table>
+      <tr>
+        <td><strong>Payment Method:</strong> ${paymentMethod}</td>
+        <td><strong>Total:</strong> ₹${totalAmount}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>AUTHORIZED SIGNATORY & STAMP</p>
+    <p>RECEIVER SIGNATORY</p>
+  </div>
+</body>
+
     </html>
   `);
   newWindow.document.close();
+}
+function generateShowroomBill() {
+  const name = document.getElementById("showroom-customer").value;
+  const number = document.getElementById("showroom-number").value;
+  const showroomName = document.getElementById("showroom-name").value;
+  const productId = document.getElementById("showroom-product-dropdown").value;
+  const batteryNo = document.getElementById("showroom-battery-no").value;
+  const mrp = document.getElementById("showroom-mrp").value;
+  const payment = document.getElementById("payment").value;
+  const type = document.querySelector(
+    'input[name="showroomType"]:checked'
+  ).value;
+
+  const billWindow = window.open("", "_blank");
+  billWindow.document.write(`
+    <html>
+      <head>
+        <title>Showroom Bill</title>
+        <style>
+          /* Base layout and typography */
+          body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 210mm;
+            height: 148mm;
+            padding: 20px 30px;
+            margin: 0;
+            background: #fff;
+            color: #333;
+            box-sizing: border-box;
+          }
+
+          /* Table styling */
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+          }
+
+          th, td {
+            border: 1px solid #ccc;
+            padding: 8px 10px;
+            text-align: left;
+          }
+
+          th {
+            background-color: #4a90e2;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+          }
+
+          td {
+            color: #444;
+          }
+
+          /* Header styling */
+          .header {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+
+          .header h1 {
+            font-size: 20px;
+            margin: 0;
+            color: #222;
+          }
+
+          .header p {
+            font-size: 12px;
+            margin: 5px 0;
+            color: #666;
+          }
+
+          /* Footer styling */
+          .footer {
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #555;
+          }
+
+          /* Optional watermark container (if needed later) */
+          .table-container {
+            position: relative;
+          }
+
+          .table-container::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 100px;
+            background-image: url('/mnt/data/6f449538-b444-482b-8922-c93254c22959.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0.06;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+          }
+
+          table {
+            position: relative;
+            z-index: 1;
+          }
+
+          @media print {
+            body {
+              padding: 10mm;
+              background: #fff;
+              color: #000;
+            }
+
+            .table-container::before {
+              content: none; /* Hide watermark for clean print */
+            }
+
+            th, td {
+              font-size: 11px;
+              padding: 6px;
+            }
+          }
+        </style>
+
+      </head>
+      <body onload="window.print(); window.close();">
+        <div class="header">
+          <h2>SRI RAGHAVENDRA AUTOMOBILES</h2>
+          <p>SHOWROOM BILL</p>
+        </div>
+        <p><strong>Customer:</strong> ${name}</p>
+        <p><strong>Mobile:</strong> ${number}</p>
+        <p><strong>Showroom:</strong> ${showroomName}</p>
+        <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Product ID</th><th>Battery No</th><th>MRP</th><th>Payment</th><th>Type</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>${productId}</td><td>${batteryNo}</td><td>${mrp}</td><td>${payment}</td><td>${type}</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="footer">
+          <div>Authorized Signatory</div>
+          <div>Receiver Signature</div>
+        </div>
+        <script>window.print();</script>
+      </body>
+    </html>
+  `);
+  billWindow.document.close();
 }

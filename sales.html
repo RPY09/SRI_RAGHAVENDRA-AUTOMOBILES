@@ -152,7 +152,7 @@
           <div class="btn-group">
             <button type="submit" class="btn btn-submit">Submit</button>
             <button
-              type="submit"
+              type="button"
               name="action"
               value="bill"
               class="btn btn-bill"
@@ -208,6 +208,13 @@
             />
           </div>
           <div class="form-group">
+            <label for="payment">PAYMENT METHOD:</label>
+            <select name="paymentMethod" id="payment" class="rounded-lg">
+              <option value="online">ONLINE</option>
+              <option value="cash">CASH</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label for="charging-amount">CHARGING AMOUNT:</label>
             <input
               type="number"
@@ -217,7 +224,7 @@
               required
             />
           </div>
-          <div class="btn-group">
+          <div class="btn-group" id="chargebtn">
             <button type="submit" class="btn btn-submit">Submit</button>
             <button
               type="submit"
@@ -241,6 +248,16 @@
               type="text"
               id="showroom-customer"
               name="showroomCustomer"
+              class="rounded-lg"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="showroom-number">MOBILE NUMBER:</label>
+            <input
+              type="number"
+              id="showroom-number"
+              name="showroomNumber"
               class="rounded-lg"
               required
             />
@@ -274,16 +291,7 @@
               required
             />
           </div>
-          <div class="form-group">
-            <label for="showroom-number">MOBILE NUMBER:</label>
-            <input
-              type="number"
-              id="showroom-number"
-              name="showroomNumber"
-              class="rounded-lg"
-              required
-            />
-          </div>
+
           <div class="form-group">
             <label for="showroom-mrp">MRP:</label>
             <input
@@ -294,20 +302,27 @@
               required
             />
           </div>
+          <div class="form-group">
+            <label for="payment">PAYMENT METHOD:</label>
+            <select name="paymentMethod" id="payment" class="rounded-lg">
+              <option value="online">ONLINE</option>
+              <option value="cash">CASH</option>
+            </select>
+          </div>
           <!-- Old/New radio buttons -->
           <div class="form-group" id="radioform">
-            <label
+            <label id="raiolab"
               ><input type="radio" name="showroomType" value="old" checked />
-              Old</label
+              OLD</label
             >
-            <label
-              ><input type="radio" name="showroomType" value="new" /> New</label
+            <label id="raiolab"
+              ><input type="radio" name="showroomType" value="new" /> NEW</label
             >
           </div>
-          <div class="btn-group">
+          <div class="btn-group" id="chargebtn">
             <button type="submit" class="btn btn-submit">Submit</button>
             <button
-              type="submit"
+              type="button"
               name="action"
               value="bill"
               class="btn btn-bill"
